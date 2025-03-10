@@ -105,10 +105,24 @@
 		    <artifactId>jakarta.transaction-api</artifactId>
 		</dependency>
 		<dependency>
-    <groupId>org.springframework.plugin</groupId>
-    <artifactId>spring-plugin-core</artifactId>
-    <version>3.0.0</version>
-</dependency>
+		    <groupId>org.springframework.plugin</groupId>
+		    <artifactId>spring-plugin-core</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-test</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
+		
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>5.11.0</version>
+		    <scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
         <dependencies>
@@ -149,6 +163,18 @@
                     </compilerArgs>
 	            </configuration>
 	        </plugin>
+	         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+            <configuration>
+                <argLine>
+                    -XX:+EnableDynamicAgentLoading
+                    -javaagent:"${settings.localRepository}/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar"
+                </argLine>
+            </configuration>
+        </plugin>
+
 		</plugins>
 	</build>
 
